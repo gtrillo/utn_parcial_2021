@@ -14,6 +14,13 @@ static int elegirOpcion (int* opcion);
 static void imprimirOpciones (void);
 static int modificarCantidadJugadores (int* pArray);
 static int modificarNombreJuego (char array[]);
+/**
+ *\brief funsion para incializar el array de arcades
+ *para eso pone todas las posiciones del array como libres
+ *\param list
+ *\param largo de la lista
+ *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
+ */
 int arcade_initArcade(Arcade* list, int len)
 {
 	int retorno;
@@ -33,6 +40,12 @@ int arcade_initArcade(Arcade* list, int len)
 	}
 	return retorno;
 }
+/**
+ *\brief funsion para añadir un nuevo arcade
+ *\param list
+ *\param largo de la lista
+ *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
+ */
 int arcade_addArcade(Arcade listArcades[], Salon listSalones[])
 {
 	char nacionalidadAux [LEN_LIST];
@@ -55,7 +68,7 @@ int arcade_addArcade(Arcade listArcades[], Salon listSalones[])
 						{
 							utn_getNumeroInt(&idIngresado, "Ingrese el ID del salón al que pertenece:\n", "Error de tipeo, Intente nuevamente:\n", 0, 1000, 5);
 
-							while (salon_buscarPorID(listSalones, 1000, idIngresado)==-1)
+							while (salon_buscarPorID(listSalones, 100, idIngresado)!=0)
 							{
 								utn_getNumeroInt(&idIngresado, "Error ingresaste in ID invalido!!!\n", "Error de tipeo, Intente nuevamente:\n", 0, 1000, 5);
 							}
@@ -78,6 +91,8 @@ int arcade_addArcade(Arcade listArcades[], Salon listSalones[])
 	}
 	return retorno;
 }
+/** \brief funsion que devuelve un ID nuevo cada vez que se la invoca
+*/
 static int arcade_dameUnIdNuevo(void)
 {
 	static int contador = 0;
@@ -85,7 +100,7 @@ static int arcade_dameUnIdNuevo(void)
 }
 /**
  *\brief funsion que devuelve un lugar libre en el array
- *\param lista employe
+ *\param list
  *\param largo de la lista
  *\param retorno de posicion libre
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
@@ -110,7 +125,14 @@ int arcade_dameUnLugarLibre (Arcade list[], int lenArray, int* retornoPosicionLi
 	*retornoPosicionLibre = auxLugarLibre;
 	return retorno;
 }
-
+/**
+ *\brief funsion para chequear que un id ingresado
+ *por el usuario sea valido
+ *\param list
+ *\param largo de la lista
+ *\param id ingresado
+ *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
+ */
 int arcade_buscarPorID(Arcade* list, int len,int id)
 {
 	int retorno = -1;
@@ -129,7 +151,12 @@ int arcade_buscarPorID(Arcade* list, int len,int id)
 	}
 	return retorno;
 }
-
+/**
+ *\brief funsion para modificar un arcade
+ *\param list
+ *\param largo de la lista
+ *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
+ */
 int modificarArcade(Arcade* list,int len)
 {
 	int opcion;
@@ -144,6 +171,7 @@ int modificarArcade(Arcade* list,int len)
 			retorno = 1;
 			switch (opcion)
 			{
+				retorno = 0;
 				case 1:
 					if (modificarCantidadJugadores(&cantidadJugadoresAux) == 0)
 					{
@@ -190,8 +218,8 @@ static void imprimirOpciones (void)
 }
 
 /**
- *\brief funsion para modificar salario
- *\param lista Employee
+ *\brief funsion para modificar cantidad de jugadores
+ *\param pArray
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
 static int modificarCantidadJugadores (int* pArray)
@@ -208,8 +236,8 @@ static int modificarCantidadJugadores (int* pArray)
 	return retorno;
 }
 /**
- *\brief funsion para modificar nombre
- *\param lista Employee
+ *\brief funsion para modificar el nombre de un juego
+ *\param listArray
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
 static int modificarNombreJuego (char array[])
@@ -225,7 +253,12 @@ static int modificarNombreJuego (char array[])
 	}
 	return retorno;
 }
-
+/**
+ *\brief funsion que imprime todos los juegos cargados
+ *\param list
+ *\param largo de la lista
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int arcade_JuegosCargados (Arcade list[], int len)
 {
 	int retorno = -1;
@@ -254,7 +287,12 @@ int arcade_JuegosCargados (Arcade list[], int len)
 		}
 	return retorno;
 }
-
+/**
+ *\brief funsion que imprime todos los arcades dados de alta
+ *\param list
+ *\param largo de la lista
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int arcade_printArcades(Arcade* list, int len)
 {
 	int indice;
@@ -282,7 +320,14 @@ int arcade_printArcades(Arcade* list, int len)
 	}
 	return retorno;
 }
-
+/**
+ *\brief funsion para dar de baja un arcade a travez de la baja logica
+ *la cual pone la posicion del array que se da de baja como ESTADO_LIBRE
+ *\param list
+ *\param largo de la lista
+ *\param id del arcade que se quiere dar de baja
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int arcade_removeArcade(Arcade* list, int len, int id)
 {
 		int retorno = -1;

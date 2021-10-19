@@ -8,10 +8,12 @@
 static void utn_subMenuModificar (Arcade list [], int len);
 static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArcade[], int lenArcade);
 static void imprimirOpciones (void);
+
 /** \brief funsion de menu
-* \param lista Employee*
-* \param largo del array
-*
+* \param lista listSalon*
+* \param largo del array arcade
+* \param listArcade
+* \param largo del array salones
 */
 void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenArcade)
 {
@@ -190,7 +192,12 @@ static void utn_subMenuModificar (Arcade list [], int len)
 			}
 		}
 }
-
+/** \brief submenuInformes
+* \param lista listSalon*
+* \param largo del array arcade
+* \param listArcade
+* \param largo del array salones
+*/
 static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArcade[], int lenArcade)
 {
 	int opcionElegida;
@@ -245,8 +252,9 @@ static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArc
 				case 6:
 					if (utn_getNumeroInt(&idIngresado, "Ingrese el id de un salon:\n", "El id ingresado no es valido, intente nuevamente:\n", 0, lenSalon, 3)==0)
 					{
-						if (salon_buscarPorID(listSalon, LEN_LIST, 0)!=-1)
+						while (salon_buscarPorID(listSalon, LEN_LIST, 0)!=0)
 						{
+							utn_getNumeroInt(&idIngresado, "Ingrese el id de un salon:\n", "El id ingresado no es valido, intente nuevamente:\n", 0, lenSalon, 3);
 							if (utn_getNumeroFloat(&valorFicha, "Ingrese el valor en pesos de una ficha:\n", "Error intente nuevamente:\n", 0, 9999999, 3)==0)
 							{
 								if (informes_recaudacionArcades(listArcade, lenArcade, idIngresado, valorFicha, &retornoRecaudacion)==0)
@@ -254,10 +262,6 @@ static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArc
 									printf ("monto maximo de recaudacion de un local %.2f", retornoRecaudacion);
 								}
 							}
-						}
-						else
-						{
-							printf ("El ID ingresado es invalido");
 						}
 					}
 					break;

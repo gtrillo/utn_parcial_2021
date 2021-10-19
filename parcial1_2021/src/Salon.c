@@ -11,17 +11,11 @@
 #define TIPO_LOCAL 2
 #define LEN_CADENA 32
 static int salon_dameUnIdNuevo(void);
-/** \brief add in a existing list of employees the values received as parameters
-* in the first empty position
-* \param list employee*
+
+/** \brief funsion inicializar array de salones para eso pone todas las pocisiones en ESTADO_LIBRE
+* \param list
 * \param len int
-* \param id int
-* \param name[] char
-* \param lastName[] char
-* \param salary float
-* \param sector int
-* \return int Return (-1) if Error [Invalid length or NULL pointer or without
-free space] - (0) if Ok
+* \return retorna 0 en caso de estar todo ok o -1 en caso de error
 */
 int salon_initSalon(Salon* list, int len)
 {
@@ -42,7 +36,10 @@ int salon_initSalon(Salon* list, int len)
 	}
 	return retorno;
 }
-
+/** \brief funsion para añadir un nuevo salón
+* \param list
+* \return retorna 0 en caso de estar todo ok o -1 en caso de error
+*/
 int salon_addSalon(Salon list [])
 {
 	char nombre [LEN_LIST];
@@ -70,7 +67,8 @@ int salon_addSalon(Salon list [])
 	}
 	return retorno;
 }
-
+/** \brief funsion que devuelve un ID nuevo cada vez que se la invoca
+*/
 static int salon_dameUnIdNuevo(void)
 {
 	static int contador = 0;
@@ -80,7 +78,7 @@ static int salon_dameUnIdNuevo(void)
 
 /**
  *\brief funsion que devuelve un lugar libre en el array
- *\param lista employe
+ *\param list
  *\param largo de la lista
  *\param retorno de posicion libre
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
@@ -105,7 +103,13 @@ int salon_dameUnLugarLibre (Salon list[], int len, int* retornoPosicionLibre)
 	*retornoPosicionLibre = auxLugarLibre;
 	return retorno;
 }
-
+/**
+ *\brief funsion que imprime todos los salones dados de alta
+ *\param list
+ *\param largo de la lista
+ *\param retorno de posicion libre
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int salon_printSalones(Salon* list, int len)
 {
 	int indice;
@@ -128,7 +132,13 @@ int salon_printSalones(Salon* list, int len)
 	}
 	return retorno;
 }
-
+/**
+ *\brief funsion que imprime el tipo de salon
+ *\param list
+ *\param largo de la lista
+ *\param retorno el tipo de salon en texto
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int salon_tipoSalones (Salon listSalones[], int tipo, char retornoTipo[])
 {
 	int retorno = -1;
@@ -150,7 +160,14 @@ int salon_tipoSalones (Salon listSalones[], int tipo, char retornoTipo[])
 	strncpy (retornoTipo,cadena,LEN_CADENA);
 	return retorno;
 }
-
+/**
+ *\brief funsion para chequear que un id ingresado
+ *por el usuario sea valido
+ *\param list
+ *\param largo de la lista
+ *\param id ingresado
+ *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
+ */
 int salon_buscarPorID(Salon* list, int len,int id)
 {
 	int retorno = -1;
@@ -170,7 +187,17 @@ int salon_buscarPorID(Salon* list, int len,int id)
 	return retorno;
 }
 
-
+/**
+ *\brief funsion de alta forzada de salones
+ *\param array
+ *\param largo de la lista
+ *\param indice
+ *\param id
+ *\param puntero nombre
+ *\param puntero direccion
+ *\param tipo
+ *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
+ */
 
 int salon_altaForzada (Salon* array, int limite, int indice, int id, char* nombre, char* direccion,int tipo)
 {

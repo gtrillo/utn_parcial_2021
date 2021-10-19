@@ -10,6 +10,18 @@
 #define TIPO_SHOPPING 1
 #define TIPO_LOCAL 2
 #define	LEN_CADENA 32
+
+/**
+ *\brief funsion para dar de baja un salon utilizando la baja logica y cambiando
+ *el estado de la posicion del array como libre
+ *\param listSalon
+ *\param largo del array de salones
+ *\param listArcade
+ *\param largo del array de arcades
+ *\param id ingresado
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
+
 int salon_removeSalon(Salon* listSalon, int lenSalon, Arcade* listArcade, int lenArcade, int id)
 {
 		int retorno = -1;
@@ -41,7 +53,15 @@ int salon_removeSalon(Salon* listSalon, int lenSalon, Arcade* listArcade, int le
 		}
 		return retorno;
 }
-//falta arreglar
+
+/**
+ *\brief funsion que informa los salones con mas de 4 arcades
+ *\param listSalon
+ *\param largo del array de salones
+ *\param listArcade
+ *\param largo del array de arcades
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int informes_SalonConMas4Arcades (Arcade listArcades[], int lenArcades, Salon listSalones[], int lenSalones)
 {
 
@@ -83,6 +103,15 @@ int informes_SalonConMas4Arcades (Arcade listArcades[], int lenArcades, Salon li
 
 	return retorno;
 }
+
+/**
+ *\brief funsion que informa los salones con mas de 4 arcades
+ *\param listSalon
+ *\param largo del array de salones
+ *\param listArcade
+ *\param largo del array de arcades
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int informes_AParamasDe2Jugadores (Salon listSalones[], int lenSalones, Arcade listArcades[], int lenArcades)
 {
 	int retorno = -1;
@@ -110,6 +139,13 @@ int informes_AParamasDe2Jugadores (Salon listSalones[], int lenSalones, Arcade l
 	return retorno;
 }
 
+/**
+ *\brief funsion que informa la cantidad de arcades que posee un salon
+ *\param listArcades
+ *\param largo del array de Arcades
+ *\param idIngresado por el usuario
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int informes_contadorArcades (Arcade listArcades[], int lenArcades, int idIngresado)
 {
 	int retorno = -1;
@@ -130,6 +166,14 @@ int informes_contadorArcades (Arcade listArcades[], int lenArcades, int idIngres
 	return retorno;
 }
 
+/**
+ *\brief funsion que informa los salones con mas de 4 arcades
+ *\param listSalon
+ *\param largo del array de salones
+ *\param listArcade
+ *\param largo del array de arcades
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int informes_ListaArcades (Arcade listArcades[], int lenArcades, Salon listSalones[], int lenSalones ,int idIngresado)
 {
 	int retorno = -1;
@@ -162,7 +206,16 @@ int informes_ListaArcades (Arcade listArcades[], int lenArcades, Salon listSalon
 	}
 	return retorno;
 }
-
+/**
+ *\brief funsion que informa el salon con mas cantidad de arcades
+ *\param listSalon
+ *\param largo del array de salones
+ *\param listArcade
+ *\param largo del array de arcades
+ *\param puntero  al Id de la posicion que contiene el salon con mas cantidad de arcades
+ *\param puntero a la direccion de memoria donde se copiara el resultado del contadorMaximo
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int informes_SalonConMasArcades (Salon listSalones [], int lenSalones, Arcade listArcades [], int lenArcades, int* idMaximo, int* contadorMaximo)
 {
 	int i;
@@ -200,7 +253,17 @@ int informes_SalonConMasArcades (Salon listSalones [], int lenSalones, Arcade li
 			}
 	return retorno;
 }
-
+/**
+ *\brief funsion que informa la recaudacion maxima diaria que puede hacer un arcade
+ *\param listArcades
+ *\param largo del array de arcades
+ *\param listSalones
+ *\param largo del array de salones
+ *\param idIngresado por el usuario
+ *\param precioIngresado por el usuario
+ *\param puntero al espacio en memoria donde se guardara el resultado
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int informes_recaudacionArcades (Arcade listArcades[], int lenArcades, int idIngresado,float precioIngresado, float* pResultado)
 {
 	int retorno = -1;
@@ -223,7 +286,14 @@ int informes_recaudacionArcades (Arcade listArcades[], int lenArcades, int idIng
 	*pResultado = recaudacion;
 	return retorno;
 }
-
+/**
+ *\brief funsion que informa la cantidad de arcades que contienen un juego el cual es ingreado por consola por el usuario
+ *\param listArcades
+ *\param largo del array de arcades
+ *\param texto ingresado por el usuario
+ *\param puntero al espacio en memoria donde se guardara el resultado del contador
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
 int contadorJuegos (Arcade list[], int len, char textoIngresado[], int* pContador)
 {
 	int retorno = -1;
