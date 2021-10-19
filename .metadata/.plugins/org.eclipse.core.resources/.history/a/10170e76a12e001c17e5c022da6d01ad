@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LEN_LIST 128
+
+#ifndef SALON_H_
+#define SALON_H_
+
+typedef struct
+{
+	int id;
+	char nombre [LEN_LIST];
+	char direccion [LEN_LIST];
+	float tipo;
+	int flagEmpty;
+}Salon;
+int initSalon(Salon* list, int len);
+int addSalon(Salon list []);
+int DameUnLugarLibre (Salon list[], int len, int* retornoPosicionLibre);
+int printSalones(Salon* list, int len);
+#endif /* SALON_H_ */

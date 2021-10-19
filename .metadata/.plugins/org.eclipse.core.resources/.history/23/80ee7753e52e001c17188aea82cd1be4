@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int arcade_altaForzada (Arcade* array, int limite, int indice, int id, char* nombre, char* nacionalidad,int idSalon, int tipoSonido, int cantidadJugadores, int capacidadFichas)
+{
+	int retorno = -1;
+	Arcade bufferArcade;
+	if (array != NULL && indice >= 0 && indice < limite)
+	{
+				strncpy(bufferArcade.nacionalidad, nacionalidad, sizeof (bufferArcade.nacionalidad));
+				bufferArcade.tipoSonido = tipoSonido;
+				bufferArcade.cantidadJugadores = cantidadJugadores;
+				bufferArcade.capacidadFichas = capacidadFichas;
+				bufferArcade.idSalon = idSalon;
+				strncpy(bufferArcade.nombreDelJuego, nombre, sizeof (bufferArcade.nombreDelJuego));
+				bufferArcade.id = id;
+				bufferArcade.flagEmpty = 0;
+				array[indice] = bufferArcade;
+				(id)++;
+				retorno = 0;
+	}
+	return retorno;
+}

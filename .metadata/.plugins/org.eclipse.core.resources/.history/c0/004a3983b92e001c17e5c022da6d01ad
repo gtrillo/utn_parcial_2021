@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LEN_LIST 128
+#define LEN_NOMBREJUEGO 63
+
+#ifndef ARCADE_H_
+#define ARCADE_H_
+
+typedef struct
+{
+	int id;
+	char nacionalidad [LEN_LIST];
+	int tipoSonido;
+	int cantidadJugadores;
+	int capacidadFichas;
+	int idSalon;
+	char nombreDelJuego[63];
+	int flagEmpty;
+}Arcade;
+int arcade_initArcade(Arcade* list, int len);
+int arcade_dameUnLugarLibre (Arcade pEmpleado[], int lenArray, int* retornoPosicionLibre);
+int arcade_addArcade(Arcade listArcades[], Salon listSalones[]);
+int arcade_findEmployeeById(Arcade* list, int len,int id);
+#endif /* ARCADE_H_ */

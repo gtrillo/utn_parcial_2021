@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Salon.h"
+#define ESTADO_LIBRE 1
+#define ESTADO_OCUPADO 0
+int initEmployees(Salon* list, int len)
+{
+	int retorno;
+	int i;
+
+	if (list != NULL && len > 0)
+	{
+		for (i = 0; i < len; i++)
+		{
+			list[i].flagEmpty = ESTADO_LIBRE;
+			retorno = 0;
+		}
+	}
+	else
+	{
+		retorno = -1;
+	}
+	return retorno;
+}

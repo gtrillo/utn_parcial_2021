@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LEN_LIST 128
+#define LEN_NOMBREJUEGO 63
+#ifndef SALON_H_
+#define SALON_H_
+
+typedef struct
+{
+	int id;
+	char nacionalidad [LEN_LIST];
+	int tipoSonido;
+	int CantidadJugadores;
+	int cantidadFichas;
+	int idSalon;
+	char NombreDelJuego[63];
+	int flagEmpty;
+}Arcade;
+
+#endif /* SALON_H_ */

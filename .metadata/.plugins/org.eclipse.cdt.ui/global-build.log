@@ -1,0 +1,246 @@
+02:06:20 **** Clean-only build of configuration Debug for project parcial1_2021 ****
+rm -rf src/Arcade.d src/Salon.d src/utn_text.o src/utn_getNumeroFloat.o src/Salon.o src/utn_text.d src/utn_getNumeroFloat.d src/utn_getNumeroInt.d src/utn_menu.o src/utn_menu.d src/utn_getNumeroInt.o src/utn_esAlfanumerioConEspacios.d src/utn_esAlfanumerioConEspacios.o src/parcial1_2021.o src/informes.o src/Arcade.o src/parcial1_2021.d src/informes.d parcial1_2021.exe 
+rm: cannot remove `parcial1_2021.exe': Permission denied
+02:06:48 **** Rebuild of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Salon.o" "..\\src\\Salon.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_getNumeroFloat.o" "..\\src\\utn_getNumeroFloat.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_text.o" "..\\src\\utn_text.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_esAlfanumerioConEspacios.o" "..\\src\\utn_esAlfanumerioConEspacios.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_getNumeroInt.o" "..\\src\\utn_getNumeroInt.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Arcade.o" "..\\src\\Arcade.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:07:56 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+..\src\utn_menu.c: In function 'utn_subMenuInformes':
+..\src\utn_menu.c:253:49: error: 'textoIngresado' undeclared (first use in this function)
+      if (contadorJuegos (listArcade, lenArcade, textoIngresado[])==0)
+                                                 ^~~~~~~~~~~~~~
+..\src\utn_menu.c:253:49: note: each undeclared identifier is reported only once for each function it appears in
+..\src\utn_menu.c:253:64: error: expected expression before ']' token
+      if (contadorJuegos (listArcade, lenArcade, textoIngresado[])==0)
+                                                                ^
+02:08:38 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+..\src\utn_menu.c: In function 'utn_subMenuInformes':
+..\src\utn_menu.c:253:10: error: 'informes' undeclared (first use in this function)
+      if (informes)
+          ^~~~~~~~
+..\src\utn_menu.c:253:10: note: each undeclared identifier is reported only once for each function it appears in
+02:09:48 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Salon.o" "..\\src\\Salon.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:10:04 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:10:19 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Salon.o" "..\\src\\Salon.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:14:42 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+..\src\utn_menu.c: In function 'utn_subMenuInformes':
+..\src\utn_menu.c:242:89: warning: passing argument 5 of 'informes_recaudacionArcades' from incompatible pointer type [-Wincompatible-pointer-types]
+         if (informes_recaudacionArcades(listArcade, lenArcade, idIngresado, valorFicha, &retornoContador)==0)
+                                                                                         ^
+In file included from ..\src\utn_menu.c:6:0:
+..\src\informes.h:15:5: note: expected 'float *' but argument is of type 'int *'
+ int informes_recaudacionArcades (Arcade listArcades[], int lenArcades, int idIngresado,float precioIngresado, float* pResultado);
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+..\src\utn_menu.c:257:66: error: 'contador' undeclared (first use in this function)
+       if (contadorJuegos (listArcade, lenArcade, textoIngresado, contador)==0)
+                                                                  ^~~~~~~~
+..\src\utn_menu.c:257:66: note: each undeclared identifier is reported only once for each function it appears in
+..\src\utn_menu.c:257:11: error: too many arguments to function 'contadorJuegos'
+       if (contadorJuegos (listArcade, lenArcade, textoIngresado, contador)==0)
+           ^~~~~~~~~~~~~~
+In file included from ..\src\utn_menu.c:6:0:
+..\src\informes.h:16:5: note: declared here
+ int contadorJuegos (Arcade list[], int len, char textoIngresado[]);
+     ^~~~~~~~~~~~~~
+..\src\utn_menu.c:259:9: warning: statement with no effect [-Wunused-value]
+         printf
+         ^~~~~~
+..\src\utn_menu.c:260:8: error: expected ';' before '}' token
+        }
+        ^
+02:14:57 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+..\src\utn_menu.c: In function 'utn_subMenuInformes':
+..\src\utn_menu.c:242:89: warning: passing argument 5 of 'informes_recaudacionArcades' from incompatible pointer type [-Wincompatible-pointer-types]
+         if (informes_recaudacionArcades(listArcade, lenArcade, idIngresado, valorFicha, &retornoContador)==0)
+                                                                                         ^
+In file included from ..\src\utn_menu.c:6:0:
+..\src\informes.h:15:5: note: expected 'float *' but argument is of type 'int *'
+ int informes_recaudacionArcades (Arcade listArcades[], int lenArcades, int idIngresado,float precioIngresado, float* pResultado);
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+..\src\utn_menu.c:257:66: error: 'contador' undeclared (first use in this function)
+       if (contadorJuegos (listArcade, lenArcade, textoIngresado, contador)==0)
+                                                                  ^~~~~~~~
+..\src\utn_menu.c:257:66: note: each undeclared identifier is reported only once for each function it appears in
+..\src\utn_menu.c:259:9: warning: statement with no effect [-Wunused-value]
+         printf
+         ^~~~~~
+..\src\utn_menu.c:260:8: error: expected ';' before '}' token
+        }
+        ^
+02:16:45 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Salon.o" "..\\src\\Salon.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+02:19:31 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:20:25 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:22:39 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:23:55 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:31:01 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:34:35 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+..\src\utn_menu.c: In function 'utn_menu':
+..\src\utn_menu.c:149:27: error: expected ')' before numeric constant
+       if (contadorSalones 0 > && contadorAcades > 0)
+                           ^
+02:35:16 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+..\src\utn_menu.c: In function 'utn_menu':
+..\src\utn_menu.c:149:27: error: expected ')' before numeric constant
+       if (contadorSalones 0 > && contadorAcades > 0)
+                           ^
+02:37:06 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:40:44 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:41:19 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:41:48 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+02:49:33 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+02:50:58 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+02:56:56 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+02:59:01 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:00:18 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:01:58 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+03:03:30 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+03:06:53 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:07:24 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+Info: Nothing to build for parcial1_2021
+03:14:57 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:15:18 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:16:16 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:18:33 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:19:35 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:19:46 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:22:23 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\informes.o" "..\\src\\informes.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:22:45 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+03:23:39 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn_menu.o" "..\\src\\utn_menu.c" 
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
+c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot open output file parcial1_2021.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+03:23:42 **** Incremental Build of configuration Debug for project parcial1_2021 ****
+Info: Internal Builder is used for build
+gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 

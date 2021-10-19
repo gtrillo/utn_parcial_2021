@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Salon.h"
+#include "utn_pedirCadena.h"
+
+//static void utn_subMenu (Employee aEmpleados [], int lenArray);
+/** \brief funsion de menu
+*
+* \param lista Employee*
+* \param largo del array
+*
+*/
+void utn_menu (Salon list [], int len)
+{
+	int opcion;
+	int lugarLibre;
+	int IDdarDeBaja;
+	float retornoPromedio;
+	float acumuladorSalario;
+	int ordenOrdenamiento;
+	int contadorSalones = 0;
+	do{
+		if (utn_getNumeroInt(&opcion, "\nBienvenido \nUtilice el teclado numerico para elecionar una opcion:\n1)ALTA DE SALÓN\n2)ELIMINAR SALÓN\n3)IMPRIMIR SALONES\n4)INCORPORAR ARCADE\n5)MODIFICAR ARCADE\n6)ELIMINAR ARCADE\n7)IMPRIMIR ARCADES\n8)IMPRIMIR JUEGOS\n9)INFORMES\n", "\nA seleccionado una opcion Invalida", 1, 9, 100000)==0)
+			{
+			switch (opcion)
+				{
+					case 1:
+						if (contadorSalones <  len)
+						{
+							if (DameUnLugarLibre(list, len, &lugarLibre)==0)
+								{
+									addSalon(&list[lugarLibre]);
+									printf ("Salón dado de alta con exito");
+									printSalones(list, len);
+
+								}
+							contadorSalones++;
+						}
+						else
+						{
+							printf ("Limite de salones creados.");
+						}
+					break;
+					case 2:
+					break;
+					case 3:
+						printSalones(list, len);
+					break;
+					case 4:
+					break;
+				}
+			}
+	}while (opcion <=4);
+
+}
+/** \brief funsion de submenu donde se encuentra la opcion modificar
+*
+* \param lista Employee*
+* \param largo del array
+*
+*/
+/*static void utn_subMenu (Employee aEmpleados [], int lenArray)
+{
+	int IDaModificar;
+
+		if (printEmployees(aEmpleados, lenArray)==0)
+		{
+			if (utn_getNumeroInt(&IDaModificar, "\nIngrese ID del empleado a modificar: \nVolver al menu principal", "Error opcion incorrecta", 0, 1000, 5)==0)
+			{
+				if(findEmployeeById(aEmpleados, lenArray, IDaModificar)!=-1)
+				{
+					modificarEmpleado(&aEmpleados[IDaModificar]);
+					printEmployees(aEmpleados, lenArray);
+				}
+				else
+				{
+					printf ("El ID ingresado es invalido.");
+				}
+			}
+		}
+}
+*/

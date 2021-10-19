@@ -1,0 +1,24 @@
+/*
+ ============================================================================
+ Name        : parcial1_2021.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "Salon.h"
+#include "Arcade.h"
+#include "utn_menu.h"
+#define LEN_LIST 1000
+int main(void) {
+		Salon salones [LEN_LIST];
+		Arcade arcades [LEN_LIST];
+		setbuf (stdout, NULL);
+		initSalon(salones, LEN_LIST);
+		utn_menu (salones, LEN_LIST, arcades, LEN_LIST);
+		return EXIT_SUCCESS;
+}

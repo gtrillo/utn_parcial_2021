@@ -1,0 +1,137 @@
+/*
+ * utn.c
+ *
+ *  Created on: 21 sep. 2021
+ *      Author: Gonzalo
+ *      Contenido: funsiones de solicitud de datos al usuario :3
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/**
+ *\brief lee de stdin hasta que encuentr un \n o hasta que haya copiado en cadena
+ *un maximo de 'longitud - 1' caracteres.
+ *\param pResultado puntero al espacio en memoria donde se copiara la cadena optenida
+ *\param longitud define el tamaño de la cadena
+ *\return  0 en el caso de que este todo bien y -1 en caso de error
+ */
+static int myGets(char pResultado[], int len)
+{
+	int retorno=-1;
+	int indexFinal;
+	fflush(stdin);
+
+	if(fgets(pResultado,len,stdin)!=NULL)
+	{
+		// borro el \n del final
+		indexFinal = strlen(pResultado)-1;
+		if(pResultado[indexFinal] == '\n')
+		{
+			pResultado[indexFinal] = '\0';
+		}
+		retorno = 0;
+	}
+	return retorno;
+}
+
+//Funcion que recibe una cadena de caracteres y verifica que sean todos numeros, en caso de serlo retorna -1
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+static int esNumerica(char cadena[]) //FUNCIONA!
+{
+	int estado= -1;
+	int i=0;
+
+	if (cadena!=NULL && strlen(cadena)>0)
+	{
+		estado=0;
+
+		 while (cadena[i]!='\0') //for(i=0; i<strlen(cadena);i++)
+		{
+			if(cadena[i]>'9' || cadena[i]<'0') //esta mal.
+			{
+				if(i==0)
+				{
+					if(cadena[0]!='-')
+					{
+						estado=-1;
+						break;
+					}
+					else
+					{
+						estado=-1;
+						break;
+					}
+				}
+			}
+			i++;
+		}
+	}
+	return estado;
+}
+
+/**
+ *\brief funsion para transformar la cadena a una variable de tipo int
+ *\param pResultado puntero al espacio en memoria donde se almacenara el resultado de la funsion
+ *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
+ */
+static int getInt (int* pResultado)
+{
+	int retorno;
+	char buffer [7500];
+	if (myGets(buffer, sizeof (buffer))== 0 && esNumerica(buffer))
+	{
+		retorno = 0;
+		*pResultado = atoi(buffer); //se transforma el dato string a un tipo de dato int
+	}
+	return retorno;
+}
+/**
+ *\brief solicita un numero al usuario, luego de verificarlo devuelve el resultado
+ *\param pResultado es el punter al espacio en memoria donde se almacenara el resultado de la funsion
+ *\param mensaje es el mensaje que se mostrara al usuario
+ *\param mensajeError es el mensaje de error que se le mostrara al usuario en caso de que ingrese un dato no valido
+ *\param minimo es el minimo que sera aceptado
+ *\param maximo es el maximo que sera aceptado
+ *\param reintentos son los reintentos que tendra el usuario para ingresar el dato correctamente
+ *\return 0 si se optuvo el dato o -1 en el caso de que no
+ */
+int utn_pedirInt(int* pResultado, int min, int max, int reintentos, char* variableTexto, char* textoError)
+{
+    int buffer;
+    int retorno=-1;
+    int i;
+    char bufferCadenaAux[16];
+
+    if(pResultado != NULL && min<max && reintentos >=0 && variableTexto != NULL && textoError != NULL)
+    {
+        for (i=0; i<=reintentos; i++)
+        {
+            printf("%s",variableTexto);
+
+            if (myGets(bufferCadenaAux,sizeof(bufferCadenaAux))==0)
+            {
+                if(esNumerica(bufferCadenaAux)==0)
+                {
+                    buffer=atoi(bufferCadenaAux);
+                    if(buffer>=min&&buffer<=max)
+                    {
+                        retorno = 0; // OK
+                        *pResultado=buffer;
+                        break;
+                    }else
+                    {
+                        printf("%s\n",textoError);
+                    }
+
+                } else
+                {
+                    printf("%s\n",textoError);
+                }
+
+            }
+
+        }
+    }
+    return retorno;
+}
