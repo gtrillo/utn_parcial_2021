@@ -1,7 +1,1 @@
-17:51:16 **** Incremental Build of configuration Debug for project parcial1_2021 ****
-Info: Internal Builder is used for build
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial1_2021.o" "..\\src\\parcial1_2021.c" 
-gcc -o parcial1_2021.exe "src\\Arcade.o" "src\\Salon.o" "src\\informes.o" "src\\parcial1_2021.o" "src\\utn_esAlfanumerioConEspacios.o" "src\\utn_getNumeroFloat.o" "src\\utn_getNumeroInt.o" "src\\utn_menu.o" "src\\utn_text.o" 
-
-17:51:18 Build Finished. 0 errors, 0 warnings. (took 1s.234ms)
-
+Info: Nothing to build for parcial1_2021

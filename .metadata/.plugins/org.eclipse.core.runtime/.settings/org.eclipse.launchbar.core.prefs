@@ -1,8 +1,11 @@
+LaunchTargetManager/configs/Parcial2_2021_TERMINADO.exe=org.eclipse.launchbar.core.launchTargetType.local\:Local
 LaunchTargetManager/configs/parcial1_2021.exe=org.eclipse.launchbar.core.launchTargetType.local\:Local
+LaunchTargetManager/configs/parcial2_2021.exe=org.eclipse.launchbar.core.launchTargetType.local\:Local
+LaunchTargetManager/configs/parcialFinal.exe=org.eclipse.launchbar.core.launchTargetType.local\:Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:parcial1_2021.exe
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:parcial1_2021.exe,org.eclipse.launchbar.core.descriptorType.default\:Parcial2_2021_TERMINADO.exe,org.eclipse.launchbar.core.descriptorType.default\:parcialFinal.exe,org.eclipse.launchbar.core.descriptorType.default\:parcial2_2021.exe
 eclipse.preferences.version=1
 org.eclipse.launchbar.core.descriptorType.default\:parcial1_2021.exe/activeLaunchMode=run
 org.eclipse.launchbar.core.descriptorType.default\:parcial1_2021.exe/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

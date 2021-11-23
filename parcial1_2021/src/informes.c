@@ -22,39 +22,29 @@
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
 
-int salon_removeSalon(Salon* listSalon, int lenSalon, Arcade* listArcade, int lenArcade, int id)
+int salon_removeSalon(Salon* listSalon[], int lenSalon, Arcade* listArcade[], int lenArcade, int id)
 {
 		int retorno = -1;
-		int indice;
+		int posicionHayadaSalon;
+		int posicionHayadaArcade;
 
 		if (listSalon != NULL && lenSalon >0 && listArcade != NULL && lenArcade >0 && id >-1)
 		{
-			for (indice = 0; indice < lenSalon; indice++)
+			if (salon_buscarporId(listSalon, lenSalon, id, &posicionHayadaSalon) == 1)
 			{
-				if (id == listSalon[indice].id && listSalon[indice].flagEmpty == ESTADO_OCUPADO)
+				if (arcade_buscarArcadeDeSalon(listArcade, lenArcade, id, &posicionHayadaArcade)==1)
 				{
-					listSalon[indice].flagEmpty = ESTADO_LIBRE;
 					retorno = 0;
-					for (indice = 0; indice < lenArcade; indice++)
-						{
-							if (id == listArcade[indice].idSalon && listArcade[indice].flagEmpty == ESTADO_OCUPADO)
-							{
-								listSalon[indice].flagEmpty = ESTADO_LIBRE;
-								retorno = 0;
-								break;
-							}
-							else
-							{
-								break;
-							}
-						}
+					free (listSalon[posicionHayadaSalon]);
+					listSalon[posicionHayadaSalon] = NULL;
+					free (listArcade[posicionHayadaArcade]);
+					listArcade[posicionHayadaArcade] = NULL;
 				}
 			}
 		}
 		return retorno;
 }
-
-/**
+/*
  *\brief funsion que informa los salones con mas de 4 arcades
  *\param listSalon
  *\param largo del array de salones
@@ -73,11 +63,11 @@ int informes_SalonConMas4Arcades (Arcade listArcades[], int lenArcades, Salon li
 
 	if(listArcades != NULL && lenArcades > 0 && listSalones != NULL && lenSalones > 0)
 	{
-
 		for(i = 0; i < lenSalones; i++)
 		{
 			if(listSalones[i].flagEmpty == ESTADO_OCUPADO)
 			{
+				retorno = 0;
 				contador = 0;
 
 				for(j = 0; j < lenArcades; j++)
@@ -92,7 +82,7 @@ int informes_SalonConMas4Arcades (Arcade listArcades[], int lenArcades, Salon li
 				{
 					if (salon_tipoSalones(listSalones, listSalones[i].tipo, cadena)==0)
 					{
-						printf ("ID: %d - NOMBRE: %s - DIRECCI�N: %s - TIPO: %s", listSalones[i].id, listSalones[i].nombre, listSalones[i].direccion, cadena);
+						printf ("ID: %d - NOMBRE: %s - DIRECCIÓN: %s - TIPO: %s", listSalones[i].id, listSalones[i].nombre, listSalones[i].direccion, cadena);
 					}
 
 				}
@@ -317,5 +307,57 @@ int contadorJuegos (Arcade list[], int len, char textoIngresado[], int* pContado
 		}
 	}
 	*pContador = contador;
+	return retorno;
+}
+int informesSalonCompleto (Salon listSalones[], int lenSalones, Arcade listArcades[], int lenArcades)
+{
+		int retorno = -1;
+		int i;
+		int j;
+		int contador = 0;
+		char cadena[LEN_CADENA];
+
+		if(listArcades != NULL && lenArcades > 0 && listSalones != NULL && lenSalones > 0)
+		{
+
+			for(i = 0; i < lenSalones; i++)
+			{
+
+				if(listSalones[i].flagEmpty == ESTADO_OCUPADO)
+				{
+					contador = 0;
+					for(j = 0; j < lenArcades; j++)
+					{
+						if(listArcades[j].flagEmpty == ESTADO_OCUPADO && listArcades[j].idSalon == listSalones[i].id && listArcades[j].cantidadJugadores > 2)
+						{
+							contador++;
+						}
+					}
+					if(contador > 7)
+					{
+						if (salon_tipoSalones(listSalones, listSalones[i].tipo, cadena)==0)
+						{
+							printf ("\nID: %d - NOMBRE: %s - DIRECCIÓN: %s - TIPO: %s, Cantidad de arcades que posee para mas de dos jugadores: %d", listSalones[i].id, listSalones[i].nombre, listSalones[i].direccion, cadena, contador);
+						}
+
+					}
+				}
+
+			}
+		}
+		return retorno;
+}
+
+int informePromedioArcadeXSalon (int contadorSalones, int contadorArcades)
+{
+	int retorno = -1;
+	float resultado;
+
+		printf ("contadorSALONES VALE %d, contadorarcades vale %d", contadorSalones, contadorArcades);
+		if (contadorSalones > 0 && contadorArcades >0)
+		{
+			resultado = (float)contadorArcades / contadorSalones;
+			retorno = resultado;
+		}
 	return retorno;
 }

@@ -5,8 +5,8 @@
 #include "Arcade.h"
 #include "informes.h"
 #include "utn_pedirCadena.h"
-static void utn_subMenuModificar (Arcade list [], int len);
-static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArcade[], int lenArcade);
+static void utn_subMenuModificar (Arcade* list [], int len);
+static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArcade[], int lenArcade, int contadorSalones, int contadorArcades);
 static void imprimirOpciones (void);
 
 /** \brief funsion de menu
@@ -15,8 +15,10 @@ static void imprimirOpciones (void);
 * \param listArcade
 * \param largo del array salones
 */
-void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenArcade)
+void utn_menu (Salon* arraypsalones [], int lenSalon, Arcade* arrayparcades [], int lenArcade)
 {
+	Arcade* pAuxiliarArcade;
+	Salon* pAuxiliarSalon;
 	int opcion;
 	int lugarLibre;
 	int contadorSalones = 0;
@@ -31,31 +33,32 @@ void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenAr
 			switch (opcion)
 				{
 					case 1:
-						if (contadorSalones <  lenSalon)
-						{
-							if (salon_dameUnLugarLibre(listSalon, lenSalon, &lugarLibre)==0)
+							if (salon_dameUnLugarLibre(arraypsalones, lenSalon, &lugarLibre)==0)
 								{
-									salon_addSalon(&listSalon[lugarLibre]);
-									printf ("Salón dado de alta con exito.");
-									salon_printSalones(listSalon, lenSalon);
+									pAuxiliarSalon = Salon_new();
+									if (pAuxiliarSalon != NULL)
+									{
+										salon_addSalon(pAuxiliarSalon);
+										arraypsalones[lugarLibre] = pAuxiliarSalon;
+									}
+									printf ("Salón dado de alta con exito.\n");
+									salon_printSalones(arraypsalones, lenSalon);
 									contadorSalones++;
 								}
-						}
-						else
-						{
-							printf ("Limite de salones creados.");
-						}
 					break;
 					case 2:
 						if (contadorSalones > 0)
 						{
-							salon_printSalones(listSalon, lenSalon);
+							salon_printSalones(arraypsalones, lenSalon);
 							if (utn_getNumeroInt(&idEliminarSalon, "\nIngrese el id del salon a eliminar:\n", "El id ingresado es invalido,intente nuevamente:\n", 0, 100, 5)==0)
 							{
-								if (salon_removeSalon(listSalon, lenSalon, listArcade, lenArcade, idEliminarSalon)!=-1)
+								if (salon_removeSalon(arraypsalones, lenSalon, arrayparcades, lenArcade, idEliminarSalon)==0)
 								{
 									printf ("El salon con ID: %d, ha sido dado de baja.", idEliminarSalon);
 									contadorSalones--;
+								}else
+								{
+									printf ("El ID ingresado no es valido");
 								}
 							}
 						}
@@ -65,23 +68,27 @@ void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenAr
 						}
 					break;
 					case 3:
-						if (contadorSalones > 0)
+						salon_printSalones(arraypsalones, lenSalon);
+						/*if (contadorSalones > 0)
 						{
-							salon_printSalones(listSalon, lenSalon);
+
 						}
 						else
 						{
 							printf ("No se podra ingresar a esta opcion sin antes tener salones cargados");
-						}
+						}*/
 					break;
 					case 4:
-						if (contadorSalones > 0)
+						if (arcade_dameUnLugarLibre(arrayparcades, lenArcade, &lugarLibre)==0)
 						{
-							if (arcade_dameUnLugarLibre(listArcade, lenArcade, &lugarLibre)==0)
+							pAuxiliarArcade = arcade_new();
+							if (pAuxiliarArcade != NULL)
 							{
-								arcade_addArcade(&listArcade[lugarLibre], listSalon);
+								arcade_addArcade(pAuxiliarArcade, arraypsalones);
+								arrayparcades[lugarLibre] = pAuxiliarArcade;
 								contadorArcades++;
 							}
+
 						}
 						else
 						{
@@ -91,75 +98,15 @@ void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenAr
 					case 5:
 						if (contadorArcades > 0)
 						{
-							utn_subMenuModificar (listArcade, lenArcade);
+							utn_subMenuModificar (arrayparcades, lenArcade);
 						}
 						else
 						{
 							printf ("No se puede ingresar a esta opcion sin antes haber dado de alta algun arcade");
 						}
-					break;
-					case 6:
-						if (contadorArcades > 0)
-						{
-							arcade_printArcades(listArcade, lenArcade);
-							if (utn_getNumeroInt(&idEliminarArcade, "\nIngrese el ID del salon a eliminar:\n", "El ID ingresado no es valido", 0,1000, 5)==0)
-							{
-								auxiliar = arcade_buscarPorID(listArcade, lenArcade, idEliminarArcade);
-								if (auxiliar != -1)
-								{
-									printf ("esta seguro que desea dar de baja el arcade con ID: %d\n", idEliminarArcade);
-									if(utn_getNumeroInt(&confirmacion, "Ingrese 0 para confirmar y para 1 cancelar", "Error intente nuevamente", 0, 1, 3)==0)
-									{
-										if (arcade_removeArcade(listArcade, lenArcade, idEliminarArcade)==0)
-										{
-											printf ("El arcade con ID: %d, ha sido dado de baja.", idEliminarArcade);
-											contadorArcades--;
-										}
-										else
-										{
-											printf ("accion cancelada");
-										}
-									}
-								}
-							}
-						}
-
-							else
-							{
-								printf ("No se pueden dar de baja un arcade sin antes tener cargado alguno en el sistema");
-							}
 					break;
 					case 7:
-						if (contadorArcades > 0)
-						{
-							arcade_printArcades(listArcade, lenArcade);
-						}
-						else
-						{
-							printf ("no se puede ingresar a esta opcion sin antes haber dado de alta algun arcade");
-						}
-					break;
-					case 8:
-						if (contadorArcades > 0)
-						{
-							printf ("Lista de juegos:");
-							arcade_JuegosCargados(listArcade, lenArcade);
-						}
-						else
-						{
-							printf ("No se puede ingresar a esta opcion sin antes haber dado de alta algun arcade");
-						}
-					break;
-					case 9:
-
-						if (contadorArcades > 0 && contadorSalones >0)
-						{
-							utn_subMenuInformes(listSalon, lenSalon, listArcade, lenArcade);
-						}
-						else
-						{
-							printf ("No se puede ingresar a esta opcion sin antes tener cargados al menos 1 salon y un arcade");
-						}
+						arcade_printArcades(arrayparcades, lenArcade);
 					break;
 				}
 			}
@@ -172,17 +119,18 @@ void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenAr
 * \param largo del array
 *
 */
-static void utn_subMenuModificar (Arcade list [], int len)
+static void utn_subMenuModificar (Arcade* list [], int len)
 {
 	int IDaModificar;
+	int posEncontrada;
 
 		if (arcade_printArcades(list, len)==0)
 		{
 			if (utn_getNumeroInt(&IDaModificar, "\nIngrese ID de la maquina arcade que desea modificar: \nVolver al menu principal", "Error opcion incorrecta", 0, 1000, 5)==0)
 			{
-				if(arcade_buscarPorID(list, len, IDaModificar)!=-1)
+				if(arcade_buscarporId(list, len, IDaModificar, &posEncontrada)!=-1)
 				{
-					modificarArcade(&list[IDaModificar], len);
+					modificarArcade(list[posEncontrada], len);
 					arcade_printArcades(list, len);
 				}
 				else
@@ -192,105 +140,3 @@ static void utn_subMenuModificar (Arcade list [], int len)
 			}
 		}
 }
-/** \brief submenuInformes
-* \param lista listSalon*
-* \param largo del array arcade
-* \param listArcade
-* \param largo del array salones
-*/
-static void utn_subMenuInformes (Salon listSalon[], int lenSalon, Arcade listArcade[], int lenArcade)
-{
-	int opcionElegida;
-	int idIngresado;
-	int idIngresadoListarSalon;
-	int cantidadArcades;
-	int retornoContMax;
-	int retornoIdMax;
-	int retornoContador;
-	float valorFicha;
-	float retornoRecaudacion;
-	char textoIngresado[63];
-	imprimirOpciones();
-	if (utn_getNumeroInt(&opcionElegida, "\nSeleccione una opcion\n", "\nError. intente nuevamente\n", 1,7,3)==0)
-	{
-			switch (opcionElegida)
-			{
-				case 1:
-					informes_SalonConMas4Arcades(listArcade, lenArcade, listSalon, lenSalon);
-					break;
-				case 2:
-					informes_AParamasDe2Jugadores(listSalon, lenSalon, listArcade, lenArcade);
-					break;
-				case 3:
-					salon_printSalones(listSalon, lenSalon);
-					if (utn_getNumeroInt(&idIngresado, "\nIngrese ID:\n", "Error el ID ingresado no es valido\n", 0, lenSalon, 3)==0)
-					{
-						if(salon_buscarPorID(listSalon, lenSalon, idIngresado)!=-1)
-						{
-							cantidadArcades = informes_contadorArcades(listArcade, lenArcade, idIngresado);
-							printf ("%d",cantidadArcades);
-							if (cantidadArcades != -1)
-							{
-								printf ("\nID: %d - NOMBRE: %s - DIRECCION: %s - CANTIDAD DE ARCADES QUE POSEE: %d", listSalon[idIngresado].id, listSalon[idIngresado].nombre, listSalon[idIngresado].direccion, cantidadArcades);
-							}
-						}
-					}
-					break;
-				case 4:
-					salon_printSalones(listSalon, lenSalon);
-					if (utn_getNumeroInt(&idIngresadoListarSalon, "\nIngrese ID del salon:\n", "Error Intente nuevamente\n", 0, lenSalon, 3)==0)
-					{
-						informes_ListaArcades(listArcade, lenArcade, listSalon, lenSalon, idIngresadoListarSalon);
-					}
-					break;
-				case 5:
-					if (informes_SalonConMasArcades(listSalon, lenSalon, listArcade, lenArcade, &retornoIdMax, &retornoContMax)==0)
-					{
-						printf ("ID: %d - NOMBRE: %s - DIRECCION: %s - CANTIDAD DE ARCADES QUE POSEE: %d", listSalon[retornoIdMax].id, listSalon[retornoIdMax].nombre, listSalon[retornoIdMax].direccion, retornoContMax);
-					}
-					break;
-				case 6:
-					if (utn_getNumeroInt(&idIngresado, "Ingrese el id de un salon:\n", "El id ingresado no es valido, intente nuevamente:\n", 0, lenSalon, 3)==0)
-					{
-						while (salon_buscarPorID(listSalon, LEN_LIST, 0)!=0)
-						{
-							utn_getNumeroInt(&idIngresado, "Ingrese el id de un salon:\n", "El id ingresado no es valido, intente nuevamente:\n", 0, lenSalon, 3);
-							if (utn_getNumeroFloat(&valorFicha, "Ingrese el valor en pesos de una ficha:\n", "Error intente nuevamente:\n", 0, 9999999, 3)==0)
-							{
-								if (informes_recaudacionArcades(listArcade, lenArcade, idIngresado, valorFicha, &retornoRecaudacion)==0)
-								{
-									printf ("monto maximo de recaudacion de un local %.2f", retornoRecaudacion);
-								}
-							}
-						}
-					}
-					break;
-				case 7:
-					if (utn_getText(textoIngresado, 63, "Ingrese nombre del juego:\n", "Error. el nombre es invalido\n", 5)==0)
-					{
-						if (contadorJuegos (listArcade, lenArcade, textoIngresado, &retornoContador)==0)
-							{
-								printf ("cantidad de arcades que contiene el juego: %d", retornoContador);
-							}
-						else
-							{
-								printf ("el juego ingresado no corresponde con un juego cargado en la base de datos");
-							}
-					}
-					break;
-			}
-	}
-}
-static void imprimirOpciones (void)
-{
-	printf ("INFORMES");
-	printf ("\n1) Listar los salones con más de 4 arcades. Indicando ID de salón, nombre, dirección y tipo de salón.");
-	printf("\n2) Listar los arcades para más de 2 jugadores, indicando ID de arcade, cantidad de jugadores, nombre del juego y nombre del salón al que pertenece.");
-	printf("\n3) Listar toda la información de un salón en específico ingresando su ID. Imprimir nombre, tipo y dirección y cantidad de arcades que posee.");
-	printf ("\n4) Listar todos los arcades de un salón determinado ingresando su ID. Informar nombre y tipo de salón, listar todos los arcades con sus datos junto con el nombre del juego que lo compone.");
-	printf("\n5) Imprimir el salón con más cantidad de arcades, indicando todos los datos del salón y la cantidad de arcades que posee.");
-	printf("\n6) Ingresar el ID de un salón, y el valor en pesos de una ficha, e imprimir el monto máximo en pesos que puede recaudar el salón (sumar cantidad de fichas máximo de cada arcade del salón y multiplicarla por el valor en pesos ingresado)");
-	printf ("\n7) Ingresar el nombre de un juego e imprimir cuantos arcades lo contienen.");
-
-}
-

@@ -6,6 +6,6 @@
 #ifndef UTN_MENU_H_
 #define UTN_MENU_H_
 
-void utn_menu (Salon listSalon [], int lenSalon, Arcade listArcade [], int lenArcade);
+void utn_menu (Salon* arraypsalones [], int lenSalon, Arcade* arrayparcades [], int lenArcade);
 
 #endif /* UTN_MENU_H_ */

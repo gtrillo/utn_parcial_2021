@@ -14,24 +14,34 @@ static int elegirOpcion (int* opcion);
 static void imprimirOpciones (void);
 static int modificarCantidadJugadores (int* pArray);
 static int modificarNombreJuego (char array[]);
+
+Arcade* arcade_new(void)
+{
+	Arcade* pArcade = (Arcade*)malloc(sizeof(Arcade));
+	if(pArcade!=NULL)
+	{
+		pArcade->flagEmpty=ESTADO_OCUPADO;
+	}
+	return pArcade;
+}
 /**
- *\brief funsion para incializar el array de arcades
+ *\brief funcion para incializar el array de arcades
  *para eso pone todas las posiciones del array como libres
  *\param list
  *\param largo de la lista
  *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
  */
-int arcade_initArcade(Arcade* list, int len)
+int arcade_initArcade(Arcade* list[], int len)
 {
 	int retorno;
 	int i;
 
 	if (list != NULL && len > 0)
 	{
+			retorno = 0;
 		for (i = 0; i < len; i++)
 		{
-			list[i].flagEmpty = ESTADO_LIBRE;
-			retorno = 0;
+			list[i] = NULL;
 		}
 	}
 	else
@@ -46,13 +56,14 @@ int arcade_initArcade(Arcade* list, int len)
  *\param largo de la lista
  *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
  */
-int arcade_addArcade(Arcade listArcades[], Salon listSalones[])
+int arcade_addArcade(Arcade listArcades[], Salon* listSalones[])
 {
 	char nacionalidadAux [LEN_LIST];
 	int tipoSonidoAux;
 	int cantidadJugadoresAux;
 	int capacidadFichasAux;
 	int idIngresado;
+	int posicionAllada;
 	char NombreDelJuegoAux [LEN_NOMBREJUEGO];
 	int retorno;
 
@@ -68,9 +79,9 @@ int arcade_addArcade(Arcade listArcades[], Salon listSalones[])
 						{
 							utn_getNumeroInt(&idIngresado, "Ingrese el ID del salón al que pertenece:\n", "Error de tipeo, Intente nuevamente:\n", 0, 1000, 5);
 
-							while (salon_buscarPorID(listSalones, 100, idIngresado)!=0)
+							while (salon_buscarporId(listSalones, 100 , idIngresado, &posicionAllada)==-1)
 							{
-								utn_getNumeroInt(&idIngresado, "Error ingresaste in ID invalido!!!\n", "Error de tipeo, Intente nuevamente:\n", 0, 1000, 5);
+								utn_getNumeroInt(&idIngresado, "Error ingresaste in ID invalido!!!\n", "Error de tipeo, Intente nuevamente:\n", 0, 100, 5);
 							}
 								if (utn_getText(NombreDelJuegoAux, LEN_NOMBREJUEGO, "Ingrese nombre del juego que contiene:\n", "Error de tipeo, Intente nuevamente:\n", 5)==0)
 								{
@@ -105,16 +116,16 @@ static int arcade_dameUnIdNuevo(void)
  *\param retorno de posicion libre
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
-int arcade_dameUnLugarLibre (Arcade list[], int lenArray, int* retornoPosicionLibre)
+int arcade_dameUnLugarLibre (Arcade* list[], int len, int* retornoPosicionLibre)
 {
 	int retorno;
 	int indice;
 	int auxLugarLibre;
-	if (list != NULL)
+	if (list != NULL && len > 0 && retornoPosicionLibre != NULL)
 	{
-		for (indice = 0; indice < lenArray; indice++)
+		for (indice = 0; indice < len; indice++)
 		{
-			if (list[indice].flagEmpty == 1)
+			if (list[indice] == NULL)
 			{
 				auxLugarLibre = indice;
 				retorno = 0;
@@ -125,6 +136,29 @@ int arcade_dameUnLugarLibre (Arcade list[], int lenArray, int* retornoPosicionLi
 	*retornoPosicionLibre = auxLugarLibre;
 	return retorno;
 }
+
+int arcade_buscarArcadeDeSalon (Arcade* arrayArcades[], int listLen, int id, int* pPosicionEncontrada)
+{
+	int index;
+	int status = -1;
+	if (arrayArcades != NULL && listLen > 0 && id>=0)
+	{
+		status = 0;
+		for (index = 0; index < listLen; index++)
+		{
+			if (arrayArcades[index]!=NULL)
+			{
+				if (arrayArcades[index]->idSalon == id)
+				{
+					*pPosicionEncontrada = index;
+					status = 1;
+					break;
+				}
+			}
+		}
+	}
+	return status;
+}
 /**
  *\brief funsion para chequear que un id ingresado
  *por el usuario sea valido
@@ -133,23 +167,26 @@ int arcade_dameUnLugarLibre (Arcade list[], int lenArray, int* retornoPosicionLi
  *\param id ingresado
  *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
  */
-int arcade_buscarPorID(Arcade* list, int len,int id)
+int arcade_buscarporId (Arcade* arrayArcades[], int listLen, int id, int* pPosicionEncontrada)
 {
-	int retorno = -1;
-	int indice;
-
-	if (list != NULL && id >=0 && len >= 0)
+	int index;
+	int status = -1;
+	if (arrayArcades != NULL && listLen > 0 && id>=0)
 	{
-		for (indice = 0; indice < len; indice++)
+		for (index = 0; index < listLen; index++)
 		{
-			if (id == list[indice].id && list[indice].flagEmpty == ESTADO_OCUPADO)
+			if (arrayArcades[index]!=NULL)
 			{
-				retorno = indice;
-				break;
+				if (arrayArcades[index]->id == id)
+				{
+					*pPosicionEncontrada = index;
+					status = 1;
+					break;
+				}
 			}
 		}
 	}
-	return retorno;
+	return status;
 }
 /**
  *\brief funsion para modificar un arcade
@@ -259,7 +296,7 @@ static int modificarNombreJuego (char array[])
  *\param largo de la lista
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
-int arcade_JuegosCargados (Arcade list[], int len)
+int arcade_JuegosCargados (Arcade* list[], int len)
 {
 	int retorno = -1;
 	int j;
@@ -274,14 +311,14 @@ int arcade_JuegosCargados (Arcade list[], int len)
 				flag = -1;
 				for (j=i+1; j<len;j++)
 				{
-					if (strcmp (list[i].nombreDelJuego, list[j].nombreDelJuego) == 0)
+					if (strcmp (list[i]->nombreDelJuego, list[j]->nombreDelJuego) == 0)
 					{
 						flag = 0;
 					}
 				}
 				if (flag == -1)
 				{
-					printf ("\n%s",list[i].nombreDelJuego);
+					printf ("\n%s",list[i]->nombreDelJuego);
 				}
 			}
 		}
@@ -293,16 +330,16 @@ int arcade_JuegosCargados (Arcade list[], int len)
  *\param largo de la lista
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
-int arcade_printArcades(Arcade* list, int len)
+int arcade_printArcades(Arcade* list[], int len)
 {
 	int indice;
 	int retorno = -1;
-	char cadena [32];
+	//char cadena [32];
 	if (list != NULL && list >= 0)
 	{
 	for (indice = 0; indice < len; indice++)
 	{
-		switch(list->tipoSonido)
+		/*switch(list[indice]->tipoSonido)
 		{
 			case TIPO_MONO:
 				strncpy(cadena, "MONO", 32);
@@ -310,10 +347,10 @@ int arcade_printArcades(Arcade* list, int len)
 			case TIPO_ESTEREO:
 				strncpy(cadena, "ESTÉREO", 32);
 				break;
-		}
-		if (list[indice].flagEmpty == ESTADO_OCUPADO)
+		}*/
+		if (list[indice] != NULL)
 		{
-			printf ("\nID:%d - NACIONALIDAD: %s - TIPO DE SONIDO: %s - CANTIDAD DE JUGADORES: %d - CAPACIDAD MAXIMA DE FICHAS: %d - ID DEL SALON AL QUE PERTENECE: %d - JUEGO QUE CONTIENE: %s", list[indice].id, list[indice].nacionalidad, cadena, list[indice].cantidadJugadores, list[indice].capacidadFichas, list[indice].idSalon, list[indice].nombreDelJuego);
+			printf ("\nID:%d - NACIONALIDAD: %s - TIPO DE SONIDO: %d - CANTIDAD DE JUGADORES: %d - CAPACIDAD MAXIMA DE FICHAS: %d - ID DEL SALON AL QUE PERTENECE: %d - JUEGO QUE CONTIENE: %s", list[indice]->id, list[indice]->nacionalidad, list[indice]->tipoSonido, list[indice]->cantidadJugadores, list[indice]->capacidadFichas, list[indice]->idSalon, list[indice]->nombreDelJuego);
 			retorno = 0;
 		}
 	}

@@ -12,22 +12,34 @@
 #define LEN_CADENA 32
 static int salon_dameUnIdNuevo(void);
 
+
+Salon* Salon_new(void)
+{
+	Salon* pSalon = (Salon*)malloc(sizeof(Salon));
+	if(pSalon!=NULL)
+	{
+		pSalon->flagEmpty=ESTADO_OCUPADO;
+	}
+	return pSalon;
+}
+
+
 /** \brief funsion inicializar array de salones para eso pone todas las pocisiones en ESTADO_LIBRE
 * \param list
 * \param len int
 * \return retorna 0 en caso de estar todo ok o -1 en caso de error
 */
-int salon_initSalon(Salon* list, int len)
+int salon_initSalon(Salon* list[], int len)
 {
 	int retorno;
 	int i;
 
 	if (list != NULL && len > 0)
 	{
+			retorno = 0;
 		for (i = 0; i < len; i++)
 		{
-			list[i].flagEmpty = ESTADO_LIBRE;
-			retorno = 0;
+			list[i] = NULL;
 		}
 	}
 	else
@@ -83,7 +95,7 @@ static int salon_dameUnIdNuevo(void)
  *\param retorno de posicion libre
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
-int salon_dameUnLugarLibre (Salon list[], int len, int* retornoPosicionLibre)
+int salon_dameUnLugarLibre (Salon* list[], int len, int* retornoPosicionLibre)
 {
 	int retorno;
 	int indice;
@@ -92,7 +104,7 @@ int salon_dameUnLugarLibre (Salon list[], int len, int* retornoPosicionLibre)
 	{
 		for (indice = 0; indice < len; indice++)
 		{
-			if (list[indice].flagEmpty == 1)
+			if (list[indice] == NULL)
 			{
 				auxLugarLibre = indice;
 				retorno = 0;
@@ -110,25 +122,24 @@ int salon_dameUnLugarLibre (Salon list[], int len, int* retornoPosicionLibre)
  *\param retorno de posicion libre
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
-int salon_printSalones(Salon* list, int len)
+int salon_printSalones(Salon* list[], int len)
 {
 	int indice;
 	int retorno = -1;
 	char cadena [LEN_CADENA];
 	if (list != NULL && list >= 0)
 	{
-	for (indice = 0; indice < len; indice++)
-	{
-		if (salon_tipoSalones(list, list[indice].tipo, cadena)==0)
+		for (indice = 0; indice < len; indice++)
 		{
-			if (list[indice].flagEmpty == ESTADO_OCUPADO)
-			{
-				printf ("\nID: %d - NOMBRE: %s - DIRECCION: %s - TIPO: %s", list[indice].id, list[indice].nombre, list[indice].direccion, cadena);
-				retorno = 0;
-			}
+				if (list[indice] != NULL)
+				{
+					if (salon_tipoSalones(list, list[indice]->tipo, cadena)==0)
+					{
+						printf ("\nID: %d - NOMBRE: %s - DIRECCION: %s - TIPO %s", list[indice]->id, list[indice]->nombre, list[indice]->direccion, cadena);
+						retorno = 0;
+					}
+				}
 		}
-
-	}
 	}
 	return retorno;
 }
@@ -139,7 +150,7 @@ int salon_printSalones(Salon* list, int len)
  *\param retorno el tipo de salon en texto
  *\return retorna 0 en el caso de que este todo bien y -1 en caso de error
  */
-int salon_tipoSalones (Salon listSalones[], int tipo, char retornoTipo[])
+int salon_tipoSalones (Salon* listSalones[], int tipo, char retornoTipo[])
 {
 	int retorno = -1;
 	char cadena[LEN_CADENA];
@@ -168,25 +179,27 @@ int salon_tipoSalones (Salon listSalones[], int tipo, char retornoTipo[])
  *\param id ingresado
  *\return retorna el indice en el caso de que este todo bien y -1 en caso de error
  */
-int salon_buscarPorID(Salon* list, int len,int id)
+int salon_buscarporId (Salon* arraySalones[], int listLen, int id, int* pPosicionEncontrada)
 {
-	int retorno = -1;
-	int indice;
-
-	if (list != NULL && id >=0 && len >= 0)
+	int index;
+	int status = -1;
+	if (arraySalones != NULL && listLen > 0 && id>=0)
 	{
-		for (indice = 0; indice < len; indice++)
+		for (index = 0; index < listLen; index++)
 		{
-			if (id == list[indice].id && list[indice].flagEmpty == ESTADO_OCUPADO)
+			if (arraySalones[index]!=NULL)
 			{
-				retorno = indice;
-				break;
+				if (arraySalones[index]->id == id)
+				{
+					*pPosicionEncontrada = index;
+					status = 1;
+					break;
+				}
 			}
 		}
 	}
-	return retorno;
+	return status;
 }
-
 /**
  *\brief funsion de alta forzada de salones
  *\param array
