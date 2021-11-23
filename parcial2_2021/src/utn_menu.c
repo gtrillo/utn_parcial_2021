@@ -34,31 +34,37 @@ void utn_menu (LinkedList* listArcades)
 				}
 				break;
 			case 2:
-				controller_ListArcade(listArcades);
-				if (controller_editArcade(listArcades)==0)
+				if (ll_sort(listArcades, controller_subSortID, 1)==0)
 				{
-					puts ("arcade modificado correctamente");
-					if (controller_saveAsText("arcades.csv", listArcades)==0)
+					controller_ListArcade(listArcades);
+					if (controller_editArcade(listArcades)==0)
 					{
-						continue;
-					}
-					else
-					{
-						puts ("no se pudo guardar el arcade en el archivo");
+						puts ("arcade modificado correctamente");
+						if (controller_saveAsText("arcades.csv", listArcades)==0)
+						{
+							continue;
+						}
+						else
+						{
+							puts ("no se pudo guardar el arcade en el archivo");
+						}
 					}
 				}
 				break;
 			case 3:
-				controller_ListArcade(listArcades);
-				if (controller_removeArcade(listArcades)==0)
-				{
-					printf ("arcade dado de baja con exito");
-				}
-				break;
-			case 4:
-				if (controller_sortArcade(listArcades)==0)
+				if (ll_sort(listArcades, controller_subSortID, 1)==0)
 				{
 					controller_ListArcade(listArcades);
+					if (controller_removeArcade(listArcades)==0)
+					{
+						printf ("arcade dado de baja con exito");
+					}
+					break;
+				case 4:
+					if (controller_sortArcade(listArcades)==0)
+					{
+						controller_ListArcade(listArcades);
+					}
 				}
 				break;
 			case 5:

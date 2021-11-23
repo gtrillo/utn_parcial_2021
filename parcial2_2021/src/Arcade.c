@@ -1,11 +1,6 @@
 #include "Arcade.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "Controller.h"
-#include "LinkedList.h"
-#include "parser.h"
-#include "utn_pedirTipo.h"
+
+
 Arcade* arcade_new()
 {
 		Arcade* pEmployee = (Arcade*)malloc(sizeof(Arcade));

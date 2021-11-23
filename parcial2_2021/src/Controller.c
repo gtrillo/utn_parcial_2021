@@ -6,7 +6,6 @@ static int modificarCantidadJugadores (int* pCantidadJugadores);
 int controller_dameUnIdNuevo(LinkedList* pArrayListEmployee);
 static void controller_imprimirOpciones();
 static int controller_subSort(void* primerNombre, void* segundoNombre);
-
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
  *
  * \param path char*
@@ -335,17 +334,33 @@ int controller_printArcade (LinkedList* pArrayListArcade, int id)
  */
 int controller_dameUnIdNuevo(LinkedList* pArrayListArcade)
 {
-	int retorno = -1;
-	int largoLista;
-	int idNuevo;
+	    int retorno = -1;
+	    int i;
+	    int idAux;
+	    int idMax=0;
+	    Arcade *pAux;
+	    if(pArrayListArcade != NULL)
+	    {
+	        for(i=0;i<ll_len(pArrayListArcade);i++)
+	        {
+	            pAux = ll_get(pArrayListArcade, i);
+	            if(i == 0)
+	            {
+	                arcade_getId(pAux, &idMax);
+	            }
+	            else
+	            {
+	                arcade_getId(pAux, &idAux);
+	                if(idAux > idMax)
+	                {
+	                    idMax = idAux;
+	                }
+	            }
+	        }
+	        retorno = idMax+1;
+	    }
+	    return retorno;
 
-	if (pArrayListArcade != NULL)
-	{
-		largoLista = ll_len(pArrayListArcade);
-		idNuevo = largoLista++;
-		retorno = idNuevo;
-	}
-	return retorno;
 }
 int controller_sortArcade(LinkedList* pArrayListArcade)
 {
@@ -459,3 +474,28 @@ int controller_saveAsTextGames(char* path , LinkedList* this)
     return retorno;
 }
 
+int controller_subSortID(void* primerId, void* SegundoId)
+{
+	int retorno;
+	int auxPrimerID;
+	int auxSegundoID;
+	Arcade* primero = (Arcade*) primerId;
+	Arcade* segundo = (Arcade*) SegundoId;
+
+	if (arcade_getId(primero, &auxPrimerID) != -1 && arcade_getId(segundo, &auxSegundoID)!= -1)
+	{
+		if (auxPrimerID == auxSegundoID)
+		{
+			retorno = 0;
+		}else if (auxPrimerID > auxSegundoID)
+		{
+			retorno = 1;
+		}else
+		{
+			retorno = -1;
+		}
+	}
+
+
+	return retorno;
+}

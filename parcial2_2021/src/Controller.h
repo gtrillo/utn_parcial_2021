@@ -23,5 +23,5 @@ int controller_saveAsText(char* path , LinkedList* pArrayListArcade);
 int controller_printArcade (LinkedList* pArrayListArcade, int id);
 int controller_findById(LinkedList* pArray,int id, int* indiceDeId);
 int controller_saveAsTextGames(char* path , LinkedList* this);
-//int controller_buscarPorId(LinkedList* pArrayListArcade, int id);
+int controller_subSortID(void* primerId, void* SegundoId);
 #endif /* CONTROLLER_H_ */
